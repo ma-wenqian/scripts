@@ -49,6 +49,7 @@ services:
     build: .
     container_name: openconnect
     restart: unless-stopped
+    network_mode: "bridge"
     cap_add:
       - NET_ADMIN
     devices:
