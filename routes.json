@@ -1,0 +1,6 @@
+{
+    "openconnect-setup.sh": {
+        "target": "https://raw.githubusercontent.com/ma-wenqian/scripts/main/sh/openconnect-setup.sh",
+        "desc": "OpenConnect + microsocks Docker setup (Linux/macOS)"
+    }
+}
