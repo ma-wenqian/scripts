@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-INSTALL_DIR="${INSTALL_DIR:-/opt/openconnect-head}"
+INSTALL_DIR="${INSTALL_DIR:-/opt/openconnect-gost}"
 
-echo "Setting up openconnect-head in $INSTALL_DIR..."
+echo "Setting up openconnect-head (gost variant) in $INSTALL_DIR..."
 sudo mkdir -p "$INSTALL_DIR"
 sudo chown "$(id -u):$(id -g)" "$INSTALL_DIR"
 cd "$INSTALL_DIR"
@@ -28,11 +28,11 @@ fi
 
 # Dockerfile
 cat > Dockerfile <<'EOF'
-FROM bibica/microsocks:latest AS microsocks
+FROM gogost/gost:latest AS gost
 
 FROM mawenqiandev/openconnect-head:latest
 
-COPY --from=microsocks /microsocks /usr/local/bin/microsocks
+COPY --from=gost /bin/gost /usr/local/bin/gost
 
 RUN mkdir -p /etc/vpnc/post-connect.d/ && \
     printf '#!/bin/sh\nip route add "${LOCAL_NETWORK:-10.0.0.0/24}" via "${LOCAL_GATEWAY:-172.17.0.1}"\n' \
@@ -45,7 +45,7 @@ cat > docker-compose.yaml <<'EOF'
 services:
   openconnect:
     build: .
-    container_name: openconnect
+    container_name: openconnect-gost
     restart: unless-stopped
     network_mode: "bridge"
     cap_add:
@@ -56,9 +56,11 @@ services:
       - "1080:1080"
     env_file:
       - .env
+    environment:
+      GOST_LOGGER_LEVEL: fatal
     command: >
       sh -c '
-      microsocks -i 0.0.0.0 -p 1080 &
+      GOST_LOGGER_LEVEL=fatal gost -L=:1080 &
       while true; do
       echo "$$OPENCONNECT_PASSWORD" | openconnect --protocol=anyconnect
       "https://$$OPENCONNECT_HOST/"
@@ -70,7 +72,7 @@ services:
       echo "OpenConnect connection expired. Restarting ...";
       sleep 2;
       done'
-      healthcheck:
+    healthcheck:
       test: ["CMD-SHELL", "curl -sf --max-time 3 https://1.1.1.1 -o /dev/null || exit 1"]
       interval: 30s
       timeout: 5s
@@ -85,6 +87,6 @@ echo ""
 echo -e "If you want your LAN to reach this proxy, edit \033[1;36mLOCAL_NETWORK\033[0m / \033[1;36mLOCAL_GATEWAY\033[0m in .env."
 echo -e "If only this machine will use it, you can ignore those two."
 echo ""
-echo -e "This script: \033[4;34mhttps://sh.mawenqian.com/openconnect-setup.sh\033[0m"
+echo -e "This script: \033[4;34mhttps://sh.mawenqian.com/openconnect-gost-setup.sh\033[0m"
 echo -e "More info:   \033[4;34mhttps://github.com/ma-wenqian/dockerfiles/tree/main/openconnect\033[0m"
 echo ""

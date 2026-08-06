@@ -2,5 +2,9 @@
     "openconnect-setup.sh": {
         "target": "https://raw.githubusercontent.com/ma-wenqian/scripts/main/sh/openconnect-setup.sh",
         "desc": "OpenConnect + microsocks Docker setup (Linux/macOS)"
+    },
+    "openconnect-gost-setup.sh": {
+        "target": "https://raw.githubusercontent.com/ma-wenqian/scripts/main/sh/openconnect-gost-setup.sh",
+        "desc": "OpenConnect + gost Docker setup (Linux/macOS)"
     }
 }
