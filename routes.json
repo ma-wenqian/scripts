@@ -1,10 +1,18 @@
 {
     "openconnect-setup.sh": {
-        "target": "https://raw.githubusercontent.com/ma-wenqian/scripts/main/sh/openconnect-setup.sh",
+        "target": "https://raw.githubusercontent.com/ma-wenqian/vpn-playbook/main/Openconnect/openconnect-setup.sh",
         "desc": "OpenConnect + microsocks Docker setup (Linux/macOS)"
     },
     "openconnect-gost-setup.sh": {
-        "target": "https://raw.githubusercontent.com/ma-wenqian/scripts/main/sh/openconnect-gost-setup.sh",
+        "target": "https://raw.githubusercontent.com/ma-wenqian/vpn-playbook/main/Openconnect/openconnect-gost-setup.sh",
         "desc": "OpenConnect + gost Docker setup (Linux/macOS)"
+    },
+    "cisco-unix-install.sh": {
+        "target": "https://raw.githubusercontent.com/ma-wenqian/vpn-playbook/main/Cisco/unix/install.sh",
+        "desc": "Cisco AnyConnect/Secure Client 2FA auto-login installer (macOS/Linux)"
+    },
+    "cisco-win-install.ps1": {
+        "target": "https://raw.githubusercontent.com/ma-wenqian/vpn-playbook/main/Cisco/win/install.ps1",
+        "desc": "Cisco Secure Client 2FA auto-login installer (Windows)"
     }
 }
