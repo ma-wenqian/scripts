@@ -80,10 +80,12 @@ services:
 EOF
 
 echo ""
-echo "Done. Now edit $INSTALL_DIR/.env with your VPN details, then run:"
-echo "  cd $INSTALL_DIR && docker compose up -d --build"
+echo -e "\033[1;32mDone.\033[0m Now edit \033[1;36m$INSTALL_DIR/.env\033[0m with your VPN details, then run:"
+echo -e "  \033[1;33mcd $INSTALL_DIR && docker compose up -d --build\033[0m"
 echo ""
-echo "If you want your LAN to reach this proxy, edit LOCAL_NETWORK / LOCAL_GATEWAY in .env."
-echo "If only this machine will use it, you can ignore those two."
+echo -e "If you want your LAN to reach this proxy, edit \033[1;36mLOCAL_NETWORK\033[0m / \033[1;36mLOCAL_GATEWAY\033[0m in .env."
+echo -e "If only this machine will use it, you can ignore those two."
 echo ""
-echo "More info: https://github.com/ma-wenqian/dockerfiles/tree/main/openconnect"
+echo -e "This script: \033[4;34mhttps://sh.mawenqian.com/openconnect-setup.sh\033[0m"
+echo -e "More info:   \033[4;34mhttps://github.com/ma-wenqian/dockerfiles/tree/main/openconnect\033[0m"
+echo ""
