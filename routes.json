@@ -14,5 +14,9 @@
     "cisco-win-install.ps1": {
         "target": "https://raw.githubusercontent.com/ma-wenqian/vpn-playbook/main/Cisco/win/install.ps1",
         "desc": "Cisco Secure Client 2FA auto-login installer (Windows)"
+    },
+    "totp-go-install.ps1": {
+        "target": "https://raw.githubusercontent.com/ma-wenqian/totp-go/main/install.ps1",
+        "desc": "TOTP 2FA code generator installer (Windows)"
     }
 }
